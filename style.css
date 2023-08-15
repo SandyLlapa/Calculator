@@ -1,0 +1,82 @@
+html,body{
+  margin-top: 70px;
+}
+.case{
+  display:block;
+  margin:auto;
+  /* flex-direction: column; */
+  background-color: rgb(114, 113, 113);
+  height:600px;
+  width:450px;
+  outline: solid 2px;
+  border-radius: 10px;
+
+}
+
+.screen{
+
+  margin:auto;
+  padding: 15px;
+  width:auto;
+}
+
+.top,.bottom{
+
+  background-color:rgb(212, 212, 212);
+  width:400px;
+  height:60px;
+  display:block;
+  margin:auto;
+}
+.options{
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.clear,.delete{
+  outline:2px solid;
+  border-radius: 10px;
+  width:190px;
+  height:80px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+
+
+
+.clear{
+  background-color: rgb(255, 151, 151);
+}
+
+.delete{
+  background-color: rgb(135, 135, 254);
+}
+
+
+.pad {
+  /* border: 2px solid red; */
+  display: block;
+  margin: auto;
+  width: 400px;
+  height:350px;
+  
+
+
+
+}
+
+.pad button {
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px; /* Added some margin for spacing between buttons */
+  width: 85px;
+  height: 70px;
+  background-color: rgb(255, 252, 252);
+  font-size: 20px;
+
+  /* Other button styles */
+}
