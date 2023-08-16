@@ -20,10 +20,6 @@ clearBtn.addEventListener('click',clear);
 deleteBtn.addEventListener('click',deleteNum);
 equal.addEventListener('click',operate);
 
-
-
-
-
 function getNumbers(num){
   prevScreen.textContent+=num.target.textContent;
   return;
@@ -57,31 +53,40 @@ function operate(){
   const operatorRegex =  /(?<=\d)(?=[+\-x÷])|(?<=[+\-x÷])(?=\d)/g;
 
   let expression = displayValue.split(operatorRegex);
-  console.log("EXPRESSION: "+expression);
+  console.log("OG EXPRESSION: "+ expression);
+
 
   let current=0;
-  for(let i=0;i<expression.length;i+=2){
 
-    firstNum=expression[i];
-    secNum=expression[i+2];
-    operator=expression[i+1];
+  while(expression.length!=1){
+
+    firstNum=expression[0];
+    console.log("FIRST NUM: "+firstNum);
+    secNum=expression[2];
+    console.log("SECOND NUM: "+secNum);
+    operator=expression[1];
 
     if(operator=="+"){
-      current+=add(firstNum,secNum);
+      current=add(firstNum,secNum);
+      console.log("CURRENT RESULT: "+current);
       
     }
     else if(operator=="-"){
-      subtract(firstNum,secNum);
+      current=subtract(firstNum,secNum);
     }
     else if(operator=="x"){
-      multiply(firstNum,secNum);
+      current=multiply(firstNum,secNum);
     }
     else if(operator=="÷"){
-      divide(firstNum,secNum);
+      current=divide(firstNum,secNum);
     }
-    expression[i+2]=current
+
+    expression.splice(0,3);
+    expression.unshift(current);
+    console.log("EXPRESSION: " + expression);
 
   }
+
 
   
 
@@ -96,19 +101,21 @@ function operate(){
 
 
 function add(a,b){
-  return a+b;
+
+
+  return Number(a)+Number(b);
 }
 
 function subtract(a,b){
-  return a-b;
+  return Number(a)-Number(b);
 }
 
 function multiply(a,b){
-  return a*b;
+  return Number(a)*Number(b);
 }
 
 function divide(a,b){
-  return a/b;
+  return Number(a)/Number(b);
 }
 
 
