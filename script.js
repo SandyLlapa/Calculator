@@ -13,24 +13,20 @@ const currentScreen = document.querySelector('.current');
 const prevScreen = document.querySelector('.prev');
 const equal=document.querySelector('.equal');
 
-clearBtn.addEventListener('click',clear);
-deleteBtn.addEventListener('click',deleteNum);
-equal.addEventListener('click',evaluate);
-
-
-
 numberButtons.forEach(button =>{button.addEventListener('click',getNumbers)});
 operatorButtons.forEach(button =>{button.addEventListener('click',getOperator)});
 
+clearBtn.addEventListener('click',clear);
+deleteBtn.addEventListener('click',deleteNum);
+equal.addEventListener('click',operate);
+
+
+
+
+
 function getNumbers(num){
   prevScreen.textContent+=num.target.textContent;
-
   return;
-}
-// currentScreen.textContent=5;
-
-function clearDisplay(){
-  currentScreen.textContent="";
 }
 
 
@@ -43,6 +39,10 @@ function getOperator(e){
 }
 
 function clear(){
+  prevScreen.textContent="";
+  firstNum="";
+  secNum="";
+  operator=""
   return;
 }
 
@@ -50,9 +50,50 @@ function deleteNum(){
   return;
 }
 
-function evaluate(){
+
+
+function operate(){
+  displayValue= prevScreen.textContent;
+  const operatorRegex =  /(?<=\d)(?=[+\-x÷])|(?<=[+\-x÷])(?=\d)/g;
+
+  let expression = displayValue.split(operatorRegex);
+  console.log("EXPRESSION: "+expression);
+
+  let current=0;
+  for(let i=0;i<expression.length;i+=2){
+
+    firstNum=expression[i];
+    secNum=expression[i+2];
+    operator=expression[i+1];
+
+    if(operator=="+"){
+      current+=add(firstNum,secNum);
+      
+    }
+    else if(operator=="-"){
+      subtract(firstNum,secNum);
+    }
+    else if(operator=="x"){
+      multiply(firstNum,secNum);
+    }
+    else if(operator=="÷"){
+      divide(firstNum,secNum);
+    }
+    expression[i+2]=current
+
+  }
+
+  
+
+  currentScreen.textContent=current;
   return;
+  
+
 }
+
+
+
+
 
 function add(a,b){
   return a+b;
@@ -71,22 +112,7 @@ function divide(a,b){
 }
 
 
-function operate(op,a,b){
 
-  if(op=="+"){
-    add(a,b);
-  }
-  else if(op=="-"){
-    subtract(a,b);
-  }
-  else if(op=="*"){
-    multiply(a,b);
-  }
-  else if(op=="/"){
-    divide(a,b);
-  }
-
-}
 
 
 
